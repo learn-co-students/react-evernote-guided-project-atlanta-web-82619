@@ -5,7 +5,7 @@ class Sidebar extends Component {
   render() {
     return (
       <div className='master-detail-element sidebar'>
-        <NoteList />
+        <NoteList notes={this.props.notes} showNoteDetail={this.props.showNoteDetail} />
         <button>New</button>
       </div>
     );
