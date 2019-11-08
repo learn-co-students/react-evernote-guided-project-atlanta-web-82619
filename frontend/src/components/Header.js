@@ -3,9 +3,7 @@ import React from 'react';
 const Header = () => {
   return (
     <div className="nav-bar">
-      <ul>
-        <li className="nav-item"><h2>Alex's Mod 5 FlatNotes</h2></li>
-      </ul>
+        <li className="nav-item"><h2>FlatNotes</h2></li>
     </div>
   );
 }

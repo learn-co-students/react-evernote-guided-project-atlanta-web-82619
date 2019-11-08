@@ -3,20 +3,15 @@ import NoteEditor from './NoteEditor';
 import NoteViewer from './NoteViewer';
 import Instructions from './Instructions';
 
-/*
-  Advice: If you cannot figure out how to get this component to work,
-          move the div and renderContent up into NoteContainer and
-          try to get it to work in the parent first.
-          Then complete the rest of your app before attempting to
-          refactor to get this Content component to work.
-*/
 class Content extends Component {
   renderContent = () => {
     if (this.props.status === 'edit') {
       return <NoteEditor 
               activeNote={this.props.activeNote} 
               handleSubmit={this.props.handleSubmit} 
-              handleCancelButton={this.props.handleCancelButton} />;
+              handleCancelButton={this.props.handleCancelButton} 
+              handleDeleteButton={this.props.handleDeleteButton}
+            />;
     } else if (this.props.status === 'view') {
       return <NoteViewer 
               activeNote={this.props.activeNote} 

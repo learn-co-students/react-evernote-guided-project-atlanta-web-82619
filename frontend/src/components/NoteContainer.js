@@ -3,7 +3,7 @@ import Search from './Search';
 import Sidebar from './Sidebar';
 import Content from './Content';
 
-const PATCH_NOTES_URL = 'http://localhost:3000/api/v1/notes/'
+const URL = 'http://localhost:3000/api/v1/notes/'
 
 class NoteContainer extends Component {
   constructor() {
@@ -36,7 +36,7 @@ class NoteContainer extends Component {
   }
 
   handleSubmit = (e, note) => {
-    fetch(PATCH_NOTES_URL + this.state.activeNote.id, {
+    fetch(URL + this.state.activeNote.id, {
       method: 'PATCH',
       body: JSON.stringify({
         title: note.title,
@@ -55,12 +55,38 @@ class NoteContainer extends Component {
         activeNote: []
       })
     })
+
+    window.location.reload()
   }
 
   handleCancelButton = () => {
     this.setState({
       status: ''
     })
+  }
+
+  handleDeleteButton = () => {
+    fetch(URL + this.state.activeNote.id, {
+      method: 'DELETE',
+      body: JSON.stringify({
+        title: 'Title here...',
+        body: 'Write something here...',
+        user_id: 1
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then(data => alert(data.message))
+
+    this.setState({
+      status: '',
+      activeNote: []
+    })
+
+    window.location.reload()
   }
 
   render() {
@@ -79,6 +105,7 @@ class NoteContainer extends Component {
             handleEditButton={this.handleEditButton} 
             handleSubmit={this.handleSubmit} 
             handleCancelButton={this.handleCancelButton}
+            handleDeleteButton={this.handleDeleteButton}
           />
         </div>
       </Fragment>

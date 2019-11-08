@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import NoteContainer from './NoteContainer';
 
-const GET_NOTES_URL = 'http://localhost:3000/api/v1/notes'
-const NEW_NOTES_URL = 'http://localhost:3000/api/v1/notes'
+const URL = 'http://localhost:3000/api/v1/notes'
 
 class App extends Component {
   constructor() {
@@ -16,13 +15,17 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch(GET_NOTES_URL)
+    this.dataFetch()
+  }
+
+  dataFetch = () => {
+    fetch(URL)
     .then(response => response.json())
     .then(data => this.setState({notes: data}))
   }
 
   handleNewButton = () => {
-    fetch(NEW_NOTES_URL, {
+    fetch(URL, {
       method: 'POST',
       body: JSON.stringify({
         title: 'Title here...',
@@ -40,6 +43,7 @@ class App extends Component {
         notes: [...this.state.notes, data]
       })
     })
+    window.location.reload()
   }
 
   handleSearch = (e) => {
@@ -51,7 +55,10 @@ class App extends Component {
 
   search = (notes, query) => {
     this.setState({
-      filteredNotes: notes.filter(note => note.title.toLowerCase().indexOf(query.toLowerCase()) !== -1)
+      filteredNotes: notes.filter(note => 
+        note.title.toLowerCase()
+          .indexOf(query.toLowerCase()) !== -1
+        )
     })
   }
 
@@ -60,11 +67,15 @@ class App extends Component {
       <div className="app">
         <Header />
         <NoteContainer 
-          notes={this.state.filteredNotes.length === 0  && this.state.query === '' 
-            ? this.state.notes 
-              : this.state.filteredNotes} 
+          notes={
+            this.state.filteredNotes.length === 0  
+              && this.state.query === '' 
+                ? this.state.notes 
+                  : this.state.filteredNotes} 
           handleSearch={this.handleSearch} 
-          handleNewButton={this.handleNewButton}/>
+          handleNewButton={this.handleNewButton}
+          dataFetch={this.dataFetch}
+        />
       </div>
     );
   }

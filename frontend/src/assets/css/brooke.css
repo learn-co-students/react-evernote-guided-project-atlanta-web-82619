@@ -105,7 +105,6 @@ div.sidebar ul li:first-child {
 }
 
 div.sidebar ul li:hover {
-  /* background-color: yellow; */
   background-image: linear-gradient(#E6E6E6, #F7F7F7);
   background-repeat: no-repeat;
 }
@@ -137,6 +136,7 @@ div.sidebar ul li:hover {
 .sidebar {
   width:25%;
   overflow: scroll;
+  height: 70vh;
 }
 
 .detail {
@@ -155,6 +155,14 @@ div.sidebar ul li:hover {
 
 .button-row {
   margin-top: 10px;
+}
+
+.float-right {
+  float: right;
+}
+
+.wide-button {
+  width: 48%
 }
 
 
