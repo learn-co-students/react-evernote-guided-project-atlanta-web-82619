@@ -7,7 +7,22 @@ class Sidebar extends Component {
       <div className="master-detail-element sidebar">
         {this.props.notes
           .filter(note =>
-            note.title.toLowerCase().includes(this.props.searchTerm)
+            note.title
+              .toLowerCase()
+              .includes(this.props.searchTerm.toLowerCase())
+          )
+          .map(note => (
+            <NoteList
+              note={note}
+              key={note.id}
+              showNote={this.props.showNote}
+            />
+          ))}
+        {this.props.notes
+          .filter(note =>
+            note.body
+              .toLowerCase()
+              .includes(this.props.searchTerm.toLowerCase())
           )
           .map(note => (
             <NoteList

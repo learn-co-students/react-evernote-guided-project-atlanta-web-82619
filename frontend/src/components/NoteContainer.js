@@ -115,6 +115,29 @@ class NoteContainer extends Component {
     });
   };
 
+  sendEmail = () => {
+    let answer = prompt(
+      "Are you sure you want to send this email?"
+    ).toLowerCase();
+
+    if (answer === "yes" || answer === "y") {
+      answer = prompt(
+        "Are you super positive you want to do that right now?"
+      ).toLowerCase();
+      if (answer === "yes" || answer === "y") {
+        alert("Do it yourself LOL 😂");
+      } else if (answer === "no" || answer === "n") {
+        alert("No email sent.");
+      } else {
+        alert("Not an acceptable answer.");
+      }
+    } else if (answer === "no" || answer === "n") {
+      alert("No email sent.");
+    } else {
+      alert("Not an acceptable answer.");
+    }
+  };
+
   render() {
     return (
       <Fragment>
@@ -136,6 +159,7 @@ class NoteContainer extends Component {
             updatedNote={this.updatedNote}
             createNote={this.createNote}
             deleteNote={this.deleteNote}
+            sendEmail={this.sendEmail}
           />
         </div>
       </Fragment>

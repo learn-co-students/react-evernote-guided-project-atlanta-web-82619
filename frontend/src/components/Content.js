@@ -12,6 +12,7 @@ class Content extends Component {
           showNote={this.props.showNote}
           editNote={this.props.editNote}
           deleteNote={this.props.deleteNote}
+          sendEmail={this.props.sendEmail}
         />
       );
     } else if (this.props.render === "edit") {
