@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 
-class NoteEditor extends Component {
+class NoteNew extends Component {
   state = {
-    title: this.props.showNote.title,
-    body: this.props.showNote.body,
-    id: this.props.showNote.id
+    title: "",
+    body: ""
   };
 
   onChange = e => {
@@ -15,7 +14,7 @@ class NoteEditor extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    this.props.updatedNote(this.state);
+    this.props.createNote(this.state);
   };
 
   render() {
@@ -36,16 +35,10 @@ class NoteEditor extends Component {
         />
         <div className="button-row">
           <input className="button" type="submit" value="Save" />
-          <button
-            type="button"
-            onClick={e => this.props.cancelEdit(e, this.props.showNote)}
-          >
-            Cancel
-          </button>
         </div>
       </form>
     );
   }
 }
 
-export default NoteEditor;
+export default NoteNew;
