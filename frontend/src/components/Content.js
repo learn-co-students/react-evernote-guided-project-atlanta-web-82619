@@ -11,11 +11,19 @@ import Instructions from './Instructions';
           refactor to get this Content component to work.
 */
 class Content extends Component {
+
+  /* create onclick event to toggle editMode, then show NoteEditor with note passed in*/
   renderContent = () => {
-    if (false) {
-      return <NoteEditor />;
-    } else if (false) {
-      return <NoteViewer />;
+    if (this.props.editMode) {
+      return <NoteEditor
+      note={this.props.selectedNote}
+      handleEdit={this.props.handleEdit}
+      saveEdit={this.props.saveEdit} />;
+    } else if (this.props.selectedNote) {
+      return <NoteViewer
+      note={this.props.selectedNote}
+      handleEdit={this.props.handleEdit}
+      saveEdit={this.props.saveEdit} />;
     } else {
       return <Instructions />;
     }
